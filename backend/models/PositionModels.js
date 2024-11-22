@@ -1,6 +1,6 @@
 const {model} = require("mongoose");
 
-const {PositionSchema} = require("../schemas/PositionSchema.js");
+const {PositionSchema} = require("../schemas/positionSchema.js");
 
 const PositionModels = new model ("position",PositionSchema);
 
