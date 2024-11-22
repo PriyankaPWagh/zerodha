@@ -4,24 +4,43 @@ import { Link } from "react-router-dom";
 import axios from "axios"
 
 import GeneralContext from "./GeneralContext";
-
+import  FlashMessageContext  from "./FlashMeassegeContext";
 import "./BuyActionWindow.css";
 
 const BuyActionWindow = ({ uid }) => {
  
   const [stockQuantity,setStockQuantity] = useState(0);
   const [stockPrice,setStockPrice] = useState(0.0);
+  const { setFlashMessage } = useContext(FlashMessageContext);
   const generalContext= useContext(GeneralContext);
-  const handleBuyClick = ()=>{
-      axios.post("http://localhost:3001/newOrder",{
-        name: uid,
-    qty:stockQuantity,
-    price: stockPrice,
-    mode: "BUY",
+  const handleBuyClick =async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/newOrder",
+        {
+          name: uid,
+          qty: stockQuantity,
+          price: stockPrice,
+          mode: "BUY",
+        },
+        { withCredentials: true }
+      );
+      setFlashMessage({
+        success: response.data.success || 'order buy',
+        error: response.data.error || '',
       });
-      generalContext.closeBuyWindow();
-  }
-
+  
+      // console.log('Order Buy successfully:', response.data);
+    } catch (error) {
+      console.error('Error placing order:', error.response?.data || error.message);
+      setFlashMessage({
+        success: '',
+        error: error.response?.data?.error || 'Failed to place order. Please try again.',
+      });
+    }
+  
+     generalContext.closeBuyWindow();
+  };
   const handleCancelClick = ()=>{
     generalContext.closeBuyWindow();
   };

@@ -1,14 +1,15 @@
-import React,{useEffect,useState} from "react";
+import React,{useEffect,useState,useContext} from "react";
 
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import {   ToastContainer,toast } from "react-toastify";
-
+import {   ToastContainer } from "react-toastify";
+import  FlashMessageContext  from "./FlashMeassegeContext";
 const Summary = () => {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
   const [username, setUsername] = useState("");
+  const { setFlashMessage } = useContext(FlashMessageContext);
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
@@ -22,10 +23,11 @@ const Summary = () => {
       const { status, user } = data;
       setUsername(user);
       return status
-        ? toast(`Hello ${user}`, {
-            position: "top-right",
-          })
-        : (removeCookie("token"), window.location.href="http://localhost:3001");
+        ? setFlashMessage ({
+          success: ` Welcome  ${user} to the Zerodha Dashboard`,
+          error:  '',
+        })
+        : (removeCookie("token"), window.location.href="http://localhost:3001/login");
     };
     verifyCookie();
   }, [cookies, navigate, removeCookie]);

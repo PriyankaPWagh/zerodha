@@ -13,7 +13,7 @@ module.exports.Signup = async (req, res, next) => {
       return res.json({ message: "User already exists" });
     }
     const user = await User.create({ email, password, username, createdAt });
-    console.log(user);
+    // console.log(user);
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
       withCredentials: true,
@@ -35,7 +35,7 @@ module.exports.Login = async (req, res, next) => {
         return res.json({message:'All fields are required'})
       }
       const user = await User.findOne({ email });
-      console.log(user);
+      // console.log(user);
       if(!user){
         return res.json({message:'Incorrect password or email' }) 
       }

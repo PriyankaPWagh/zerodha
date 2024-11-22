@@ -920,3 +920,18 @@ span a {
   position: relative;
   bottom: 5px;
 }
+
+.welcomeUser{
+  height: 30px;
+  width: 30px;
+  border: 1px solid black;
+  border-radius: 50%;
+
+}
+.welcomeUser h5 {
+ /* vertical-align: text-top; */
+ text-align: center;
+ position:relative;
+ bottom:17px;
+}
+ 

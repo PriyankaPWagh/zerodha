@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, } from "react-toastify";
 
 
 
@@ -11,9 +11,13 @@ const Menu = () => {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
   const [username, setUsername] = useState("");
+  
+
+ 
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
+        console.log("cookies.token",cookies.token)
         window.location.href="http://localhost:3001/login";
       }
       const { data } = await axios.post(
@@ -21,8 +25,10 @@ const Menu = () => {
         {},
         { withCredentials: true }
       );
-      const { status, user } = data;
+      console.log("Response from server:", data);
+      const {  user } = data;
       setUsername(user);
+     
       // return status
       //   ? toast(`Hello ${user}`, {
       //       position:"top-right",
@@ -48,7 +54,9 @@ const Menu = () => {
   const menuClass="menu";
   const activeMenueClass = "menu Selected";
   return (
+    
     <div className="menu-container">
+       
       <img src="logo.png" style={{ width: "30px" }} alt="imglogo" /> 
       <div className="menus">
         <ul>
@@ -84,14 +92,17 @@ const Menu = () => {
             </Link>
           </li>
         </ul>
+       
         <hr />
-        <h4>
-          {" "}
-          Welcome <span>{username}</span>
-        </h4>
-        <button onClick={Logout}>Logout</button>
+        &nbsp;  &nbsp; &nbsp;
+        <div className="welcomeUser"><h5>
+          {/* {" "} */}
+          {username[0]}
+        </h5></div> &nbsp;  &nbsp; &nbsp;
+        <div><button onClick={Logout}>Logout</button></div>
+        
       
-        {/* <ToastContainer /> */}
+        <ToastContainer />
       </div>
     </div>
   );

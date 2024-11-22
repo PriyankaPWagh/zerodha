@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from "react";
 import axios from "axios";
-import  verticalGraph  from "./verticalGraph";
-
+import { VerticalGraph } from "./VerticalGraph"
 // import { holdings } from "../data/data.js";
 
 const Holdings = () => {
@@ -9,11 +8,24 @@ const Holdings = () => {
   const [ allHoldings ,setAllHoldings ] = useState([]);
 
   useEffect(()=>{
-       axios.get("http://localhost:3001/allHoldings").then((res)=>{
+       axios.get("http://localhost:4000/allHoldings").then((res)=>{
         console.log(res.data);
         setAllHoldings(res.data);
        })
   },[])
+//   const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+   const labels = allHoldings.map((subArray) => subArray["name"])
+ const data = {
+  labels,
+  datasets: [
+    {
+      label: "stock.price",
+      data: allHoldings.map((stock) =>stock.price ),
+      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    },
+
+  ],
+};
   return (
     <>
       <h3 className="title">Holdings ({allHoldings.length})</h3>
@@ -70,7 +82,7 @@ const Holdings = () => {
           <p>P&L</p>
         </div>
       </div>
-      <verticalGraph/>
+      <VerticalGraph data={data}/>
     </>
   );
 };

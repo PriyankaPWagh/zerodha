@@ -5,18 +5,18 @@ import "./index.css";
 import Home from "./components/Home.js";
 import Login from "./components/Login.jsx";
 import 'react-toastify/ReactToastify.css' 
-
+import { FlashMessageProvider } from "./components/FlashMeassegeContext.js";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <FlashMessageProvider>
     <BrowserRouter>
       <Routes>
       <Route path="/login" element={<Login />} />
         <Route path="/*" element={<Home />} />
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>
+    </FlashMessageProvider>
 );
 
