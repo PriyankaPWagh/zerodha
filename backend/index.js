@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const { HoldingModels } = require("./models/HoldingModels");
 const {PositionModels} =require("./models/PositionModels")
 const {OrdersModel} =require("./models/OrderModels");
@@ -8,7 +10,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
-require("dotenv").config();
+
 const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
 const { userVerification } = require("./Middlewares/AuthMiddleware");
@@ -77,9 +79,11 @@ app.use(session({
   saveUninitialized: true,
   store: MongoStore.create({
     mongoUrl: process.env.MONGODB_URL, // Your MongoDB connection string
+    
     collectionName: 'sessions'
   }),
 }));
+console.log("mongourl",process.env.MONGODB_URL);
 // app.use(
 //   session({
 //     secret: process.env.TOKEN_KEY, // Replace with a secure key
