@@ -15,17 +15,32 @@ const { userVerification } = require("./Middlewares/AuthMiddleware");
 const { WatchlistUser } = require("./Middlewares/watchlist");
 const { MONGOdb_URL} = process.env;
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 
 
-mongoose
-   .connect(MONGOdb_URL)
-  //   useNewUrlParser: true,
-  //   useUnifiedTopology: true,
-  // })
-  .then(() => console.log("MongoDB is  connected successfully"))
-  .catch((err) => console.error(err));
+// mongoose
+//    .connect(MONGOdb_URL)
+//   //   useNewUrlParser: true,
+//   //   useUnifiedTopology: true,
+//   // })
+//   .then(() => console.log("MongoDB is  connected successfully"))
+//   .catch((err) => console.error(err));
 
+const mongodburl = process.env.MONGOdb_URL;
+if (!mongodburl) {
+  console.error("Error: MONGO_URI environment variable is not set.");
+  process.exit(1); // Exit with an error
+}
+
+mongoose.connect(mongodburl, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() => {
+  console.log("Connected to MongoDB successfully!");
+}).catch((err) => {
+  console.error("MongoDB connection error:", err);
+});
 
   //used after session as passport uses session data so user does not have to login again if opened website
 //on different tabs.
@@ -56,13 +71,22 @@ app.use(
 
 
 // Session middleware
-app.use(
-  session({
-    secret: process.env.TOKEN_KEY, // Replace with a secure key
-    resave: false,
-    saveUninitialized: true,
-  })
-);
+app.use(session({
+  secret: process.env.TOKEN_KEY,
+  resave: false,
+  saveUninitialized: true,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGOdb_URL, // Your MongoDB connection string
+    collectionName: 'sessions'
+  }),
+}));
+// app.use(
+//   session({
+//     secret: process.env.TOKEN_KEY, // Replace with a secure key
+//     resave: false,
+//     saveUninitialized: true,
+//   })
+// );
 
 
 // Flash middleware
