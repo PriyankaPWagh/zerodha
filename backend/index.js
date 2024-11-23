@@ -28,16 +28,16 @@ const flash = require('connect-flash');
 //   .catch((err) => console.error(err));
 
 const mongodburl = process.env.MONGODB_URL;
-console.log(mongodburl);
+// console.log(mongodburl);
 if (!mongodburl) {
   console.error("Error: MONGO_URI environment variable is not set.");
   process.exit(1); // Exit with an error
 }
 
-mongoose.connect(mongodburl, {
+mongoose.connect(
   // useNewUrlParser: true,
   // useUnifiedTopology: true,
-}).then(() => {
+).then(() => {
   console.log("Connected to MongoDB successfully!");
 }).catch((err) => {
   console.error("MongoDB connection error:", err);
@@ -77,7 +77,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: MongoStore.create({
-    mongoUrl: process.env.MONGOdb_URL, // Your MongoDB connection string
+    mongoUrl: process.env.MONGODB_URL, // Your MongoDB connection string
     collectionName: 'sessions'
   }),
 }));
