@@ -12,7 +12,7 @@ const Orders = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/allOrders", { withCredentials: true })
+      .get("https://zerodha-backend-wn62.onrender.com/allOrders", { withCredentials: true })
       .then((res) => {
         if (res.data.success) {
           setAllOrders(res.data.allOrders); // Extract the `allOrders` array from the response
@@ -31,7 +31,7 @@ const Orders = () => {
 
 const deleteOrder = async (orderId) => {
   try {
-    const response = await axios.delete(`http://localhost:4000/allOrders/${orderId}`);
+    const response = await axios.delete(`https://zerodha-backend-wn62.onrender.com/allOrders/${orderId}`);
     console.log(response.data.message); // Success message
     // Optionally refresh the orders list or update state
     setFlashMessage ({

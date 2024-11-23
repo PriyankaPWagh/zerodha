@@ -32,7 +32,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/login",
+        "https://zerodha-backend-wn62.onrender.com/login",
         {
           ...inputValue,
         },
@@ -43,7 +43,7 @@ const Login = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          window.location.href="http://localhost:3001";
+          window.location.href="https://zerodha-dashboard-12z0.onrender.com";
         }, 1000);
       } else {
         handleError(message);
@@ -86,7 +86,7 @@ const Login = () => {
         </div>
         <button type="submit"> Submit</button>
         <span>
-          Already have an account? <Link to={"http://localhost:3000/signup"}>Signup</Link>
+          Already have an account? <Link to={"https://zerodha-di09.onrender.com/signup"}>Signup</Link>
         </span>
       </form>
       <ToastContainer />

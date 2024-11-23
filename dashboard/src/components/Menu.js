@@ -18,10 +18,10 @@ const Menu = () => {
     const verifyCookie = async () => {
       if (!cookies.token) {
         console.log("cookies.token",cookies.token)
-        window.location.href="http://localhost:3001/login";
+        window.location.href="https://zerodha-dashboard-12z0.onrender.com/login";
       }
       const { data } = await axios.post(
-        "http://localhost:4000",
+        "https://zerodha-backend-wn62.onrender.com",
         {},
         { withCredentials: true }
       );
@@ -39,7 +39,7 @@ const Menu = () => {
   }, [cookies, navigate, removeCookie]);
   const Logout = () => {
     removeCookie("token");
-    window.location.href="http://localhost:3000";
+    window.location.href="https://zerodha-di09.onrender.com/";
   };
   const [selectMenu,setSelectMenu] = useState(0);
   // const [isProfileDropdown,setIsProfileDropdown] = useState(false);
