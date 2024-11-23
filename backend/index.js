@@ -34,10 +34,9 @@ if (!mongodburl) {
   process.exit(1); // Exit with an error
 }
 
-mongoose.connect(
-  // useNewUrlParser: true,
-  // useUnifiedTopology: true,
-).then(() => {
+mongoose.connect(mongodburl)
+  
+.then(() => {
   console.log("Connected to MongoDB successfully!");
 }).catch((err) => {
   console.error("MongoDB connection error:", err);
