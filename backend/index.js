@@ -13,7 +13,7 @@ const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
 const { userVerification } = require("./Middlewares/AuthMiddleware");
 const { WatchlistUser } = require("./Middlewares/watchlist");
-const { MONGOdb_URL, PORT } = process.env;
+const { MONGOdb_URL} = process.env;
 const session = require('express-session');
 const flash = require('connect-flash');
 
@@ -40,14 +40,14 @@ app.use(passport.initialize());
 // passport.serializeUser(User.serializeUser());
 // passport.deserializeUser(User.deserializeUser());
 
-
+ const PORT = process.env.PORT || 4000
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
 
 app.use(
   cors({
-    origin: ["https://zerodha-di09.onrender.com/","https://zerodha-dashboard-12z0.onrender.com"],
+    origin: ["https://zerodha-di09.onrender.com","https://zerodha-dashboard-12z0.onrender.com"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
