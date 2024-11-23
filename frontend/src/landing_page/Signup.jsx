@@ -42,7 +42,7 @@ const Signup = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          window.location.href="https://zerodha-backend-wn62.onrender.com/login"
+          window.location.href="https://zerodha-dashboard-12z0.onrender.com/login"
         }, 1000);
       } else {
         handleError(message);
@@ -97,7 +97,7 @@ const Signup = () => {
         </div>
         <button type="submit">Submit</button>
         <span>
-          Already have an account? <Link to={"https://zerodha-backend-wn62.onrender.com/login"}>Login</Link>
+          Already have an account? <Link to={"https://zerodha-dashboard-12z0.onrender.com/login"}>Login</Link>
         </span>
       </form>
       <ToastContainer />
