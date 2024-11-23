@@ -1,12 +1,12 @@
 import React,{useEffect,useState,useContext} from "react";
 
-import { useNavigate } from "react-router-dom";
+
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import {   ToastContainer } from "react-toastify";
 import  FlashMessageContext  from "./FlashMeassegeContext";
 const Summary = () => {
-  const navigate = useNavigate();
+
   const [cookies, removeCookie] = useCookies([]);
   const [username, setUsername] = useState("");
   const { setFlashMessage } = useContext(FlashMessageContext);
@@ -30,7 +30,7 @@ const Summary = () => {
         : (removeCookie("token"), window.location.href="https://zerodha-dashboard-12z0.onrender.com/login");
     };
     verifyCookie();
-  }, [cookies, navigate, removeCookie]);
+  });
   
   return (
     <>
