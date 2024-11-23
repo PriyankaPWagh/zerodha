@@ -13,7 +13,7 @@ const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
 const { userVerification } = require("./Middlewares/AuthMiddleware");
 const { WatchlistUser } = require("./Middlewares/watchlist");
-const { MONGOdb_URL} = process.env;
+
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
@@ -27,15 +27,16 @@ const flash = require('connect-flash');
 //   .then(() => console.log("MongoDB is  connected successfully"))
 //   .catch((err) => console.error(err));
 
-const mongodburl = process.env.MONGOdb_URL;
+const mongodburl = process.env.MONGODB_URL;
+console.log(mongodburl);
 if (!mongodburl) {
   console.error("Error: MONGO_URI environment variable is not set.");
   process.exit(1); // Exit with an error
 }
 
 mongoose.connect(mongodburl, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+  // useNewUrlParser: true,
+  // useUnifiedTopology: true,
 }).then(() => {
   console.log("Connected to MongoDB successfully!");
 }).catch((err) => {
