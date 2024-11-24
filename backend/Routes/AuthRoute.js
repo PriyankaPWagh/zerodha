@@ -3,10 +3,10 @@ const { Holding } = require("../Controllers/Holding");
 const router = require("express").Router();
 const {userVerification}= require("../Middlewares/AuthMiddleware")
 
-router.post("/signup", Signup);
-router.post("/login", Login);
+router.post("https://zerodha-backend-wn62.onrender.com/signup", Signup);
+router.post("https://zerodha-backend-wn62.onrender.com/login", Login);
 //router router.get("/Holding",Holding)
-router.post("/", userVerification, (req, res) => {
+router.post("https://zerodha-backend-wn62.onrender.com", userVerification, (req, res) => {
     res.json({
         status: true,
         user: req.username, // or username, depending on your middleware
