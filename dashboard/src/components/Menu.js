@@ -29,11 +29,7 @@ const Menu = () => {
       const {  user } = data;
       setUsername(user);
      
-      // return status
-      //   ? toast(`Hello ${user}`, {
-      //       position:"top-right",
-      //     })
-      //   : (removeCookie("token"), window.location.href="http://localhost:3001/login");
+      
     };
     verifyCookie();
   }, [cookies, navigate, removeCookie]);
@@ -42,15 +38,13 @@ const Menu = () => {
     window.location.href="https://zerodha-di09.onrender.com/";
   };
   const [selectMenu,setSelectMenu] = useState(0);
-  // const [isProfileDropdown,setIsProfileDropdown] = useState(false);
+ 
 
   const handleMenuClick= (index)=>{
     setSelectMenu(index);
   }
 
-  // const handleProfikeClick= (index)=>{
-  //   setIsProfileDropdown(!isProfileDropdown);
-  // }
+  
   const menuClass="menu";
   const activeMenueClass = "menu Selected";
   return (

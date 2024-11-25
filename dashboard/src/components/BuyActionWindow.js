@@ -30,7 +30,7 @@ const BuyActionWindow = ({ uid }) => {
         error: response.data.error || '',
       });
   
-      // console.log('Order Buy successfully:', response.data);
+    
     } catch (error) {
       console.error('Error placing order:', error.response?.data || error.message);
       setFlashMessage({

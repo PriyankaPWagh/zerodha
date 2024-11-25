@@ -12,7 +12,7 @@ const SellActionWindow = ({ uid }) => {
   const [stockQuantity,setStockQuantity] = useState(0);
   const [stockPrice,setStockPrice] = useState(0.0);
   const { setFlashMessage } = useContext(FlashMessageContext);
-  // const [flashMessages, setFlashMessages] = useState({ success: '', error: '' });
+ 
   const generalContext= useContext(GeneralContext);
   const handleSellClick = async()=>{
     try {
