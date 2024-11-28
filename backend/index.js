@@ -64,7 +64,7 @@ app.listen(PORT,() => {
 
 app.use(
   cors({
-    origin: ["https://zerodha-di09.onrender.com","https://zerodha-dashboard-12z0.onrender.com"],
+    origin: ["https://zerodha-di09.onrender.com","http://localhost:3000"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })

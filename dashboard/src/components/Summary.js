@@ -13,7 +13,7 @@ const Summary = () => {
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
-       window.location.href="https://zerodha-dashboard-12z0.onrender.com/login";
+       window.location.href="http://localhost:3000/login";
       }
       const { data } = await axios.post(
         "https://zerodha-backend-wn62.onrender.com",
@@ -27,7 +27,7 @@ const Summary = () => {
           success: ` Welcome  ${user} to the Zerodha Dashboard`,
           error:  '',
         })
-        : (removeCookie("token"), window.location.href="https://zerodha-dashboard-12z0.onrender.com/login");
+        : (removeCookie("token"), window.location.href="http://localhost:3000/login  ");
     };
     verifyCookie();
   });
