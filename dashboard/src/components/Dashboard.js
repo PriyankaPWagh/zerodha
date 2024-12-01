@@ -1,4 +1,4 @@
-import React from "react";
+import React  from "react";
 import { Route, Routes } from "react-router-dom";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
@@ -13,8 +13,11 @@ import WatchList from "./WatchList";
 import { GeneralContextProvider } from "./GeneralContext";
 
 
+
+
+
 const Dashboard = () => {
-  ;
+  
   return (
     <div className="dashboard-container">
 
@@ -28,6 +31,8 @@ const Dashboard = () => {
 
        
         <Routes>
+          
+        
           <Route exact path="/" element={<Summary />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/holdings" element={<Holdings />} />

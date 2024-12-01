@@ -17,11 +17,11 @@ const Menu = () => {
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
-        console.log("cookies.token",cookies.token)
+        console.log("cookies.token",cookies.token);
         window.location.href="http://localhost:3000/login";
       }
       const { data } = await axios.post(
-        "https://zerodha-backend-wn62.onrender.com",
+        "http://localhost:4000",
         {},
         { withCredentials: true }
       );
@@ -33,6 +33,8 @@ const Menu = () => {
     };
     verifyCookie();
   }, [cookies, navigate, removeCookie]);
+
+  
   const Logout = () => {
     removeCookie("token");
     window.location.href="https://zerodha-di09.onrender.com/";

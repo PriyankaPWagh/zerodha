@@ -1,36 +1,37 @@
-import React,{useEffect,useState,useContext} from "react";
-
+import React,{useEffect,useState} from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import {   ToastContainer } from "react-toastify";
-import  FlashMessageContext  from "./FlashMeassegeContext";
+import {   toast, ToastContainer } from "react-toastify";
+// import  FlashMessageContext  from "./FlashMeassegeContext";
 const Summary = () => {
 
+  const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
   const [username, setUsername] = useState("");
-  const { setFlashMessage } = useContext(FlashMessageContext);
+  // const { setFlashMessage } = useContext(FlashMessageContext);
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
-       window.location.href="http://localhost:3000/login";
+       console.log("token is undefined");
       }
+      
       const { data } = await axios.post(
-        "https://zerodha-backend-wn62.onrender.com",
+        "http://localhost:4000",
         {},
         { withCredentials: true }
       );
       const { status, user } = data;
       setUsername(user);
       return status
-        ? setFlashMessage ({
-          success: ` Welcome  ${user} to the Zerodha Dashboard`,
-          error:  '',
-        })
-        : (removeCookie("token"), window.location.href="http://localhost:3000/login  ");
+        ? toast(`Hello ${user}`, {
+            position: "top-right",
+          })
+        : (removeCookie("token"), window.location.href="http://localhost:3000/login");
     };
     verifyCookie();
-  });
+  }, );
   
   return (
     <>

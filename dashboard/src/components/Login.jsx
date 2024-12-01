@@ -23,16 +23,17 @@ const Login = () => {
     toast.error(err, {
       position: "top-center",
     });
-  const handleSuccess = (msg) =>
-    toast.success(msg, {
-      position: "top-center",
-    });
+    const handleSuccess = (msg) =>
+      toast.success(msg, {
+        position: "bottom-left",
+      });
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "https://zerodha-backend-wn62.onrender.com/login",
+        "http://localhost:4000/login",
         {
           ...inputValue,
         },
@@ -43,6 +44,7 @@ const Login = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
+      
           window.location.href="http://localhost:3000";
         }, 1000);
       } else {

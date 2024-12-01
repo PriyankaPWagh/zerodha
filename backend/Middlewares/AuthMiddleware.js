@@ -40,7 +40,9 @@ module.exports.userVerification = async (req, res, next) => {
       if (err) {
           console.error("JWT verification failed:", err);
           return res.status(403).json({ status: false, message: "Invalid or expired token" });
+          
       }
+      
 
       console.log("Decoded token:", decoded);
       const user = await User.findById(decoded.id);
