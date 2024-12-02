@@ -15,14 +15,17 @@ const Summary = () => {
     const verifyCookie = async () => {
       if (!cookies.token) {
        console.log("token is undefined");
+       window.location.href="http://localhost:3000/login";
       }
       
       const { data } = await axios.post(
-        "http://localhost:4000",
+        "https://zerodha-backend-wn62.onrender.com",
         {},
         { withCredentials: true }
       );
+     
       const { status, user } = data;
+    
       setUsername(user);
       return status
         ? toast(`Hello ${user}`, {
@@ -31,8 +34,12 @@ const Summary = () => {
         : (removeCookie("token"), window.location.href="http://localhost:3000/login");
     };
     verifyCookie();
-  }, );
+  }, ); 
+  // console.log("cookies",cookies);
+  if (cookies.token=="undefined") {
   
+    window.location.href="http://localhost:3000/login";
+   }
   return (
     <>
       <div className="username">

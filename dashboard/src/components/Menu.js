@@ -19,9 +19,10 @@ const Menu = () => {
       if (!cookies.token) {
         console.log("cookies.token",cookies.token);
         window.location.href="http://localhost:3000/login";
+        console.log(cookies);
       }
       const { data } = await axios.post(
-        "http://localhost:4000",
+        "https://zerodha-backend-wn62.onrender.com",
         {},
         { withCredentials: true }
       );
