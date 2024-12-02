@@ -35,7 +35,7 @@ const Login = () => {
       const { data } = await axios.post(
         "https://zerodha-backend-wn62.onrender.com/login",
         {
-          email,password
+          ...inputValue,
         },
         { withCredentials: true }
       );

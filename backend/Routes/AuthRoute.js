@@ -4,7 +4,7 @@ const router = require("express").Router();
 const {userVerification}= require("../Middlewares/AuthMiddleware")
 
 router.post("/signup", Signup);
-router.post("/login", Login);
+router.post("/login",Login,userVerification,);
 //router router.get("/Holding",Holding)
 router.post("/", userVerification, (req, res) => {
     res.json({
