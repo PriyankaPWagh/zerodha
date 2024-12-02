@@ -44,12 +44,12 @@ module.exports.Login = async (req, res, next) => {
         return res.json({message:'Incorrect password or email' }) 
       }
        const token = createSecretToken(user._id);
-       res.cookie("token", token, {
-         withCredentials: true,
-         httpOnly: true,
-         secure: true,    // Set to true for HTTPS
-        sameSite: 'Lax',
-       });
+       const cookieOptions = {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production', // Secure cookies only in production
+        sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax', // Allow cross-origin only in production
+      };
+      res.cookie('token', token, cookieOptions);
        res.status(201).json({ message: "User logged in successfully", success: true });
        next();
     } catch (error) {

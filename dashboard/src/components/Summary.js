@@ -23,6 +23,7 @@ const Summary = () => {
         {},
         { withCredentials: true }
       );
+      console.log(data);
      
       const { status, user } = data;
     
@@ -35,7 +36,7 @@ const Summary = () => {
     };
     verifyCookie();
   }, ); 
-  // console.log("cookies",cookies);
+  console.log("cookies",cookies);
   if (cookies.token=="undefined") {
   
     window.location.href="http://localhost:3000/login";
